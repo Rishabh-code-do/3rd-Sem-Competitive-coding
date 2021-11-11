@@ -1,0 +1,98 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int stack[100];
+int top=-1;
+void push(int num)
+{
+    top++;
+    stack[top]=num;
+}
+int pop()
+{
+    int x;
+    x=stack[top];
+    top--;
+    return x;
+}
+int main()
+{
+    int t;
+    cin>>t;
+    cin.ignore();
+    while(t--)
+    {
+        string s1="";
+        string s;
+        top=-1;
+        int l,n1,n2,res;
+        getline(cin,s);
+        l=s.length();
+        int a =0;
+        for(int i=0;i<l;i++)
+        {
+            if(s[i]==43)
+            {
+                n1=pop();
+                n2=pop();
+                res=n2+n1;
+                push(res);
+            }
+            else if(s[i]==45)
+            {
+                n1=pop();
+                n2=pop();
+                res=n2-n1;
+                push(res);
+            }
+            else if(s[i]==42)
+            {
+                n1=pop();
+                n2=pop();
+                res=n2*n1;
+                push(res);
+            }
+            else if(s[i]==47)
+            {
+                n1=pop();
+                n2=pop();
+                res=n2/n1;
+                push(res);
+            }
+            else if(s[i]==94)
+            {
+                n1=pop();
+                n2=pop();
+                res=pow(n2,n1);
+                push(res);
+            }
+            else if((s[i]>=48)&&(s[i]<=57))
+            {
+                if(s[i+1]==32)
+                {
+                    push(s[i]-48);
+                    i++;
+                }
+                else 
+                {
+                while(s[i+1]!=32)
+                {
+                  a=a*10+(s[i]-48);
+                  i++;
+                    }
+                    a=a*10+(s[i]-48);
+                    push(a);
+                    a=0;
+                    i++;
+                }
+            }
+            
+        }
+        cout<<stack[top]<<'\n';
+    }
+    return 0;
+}
