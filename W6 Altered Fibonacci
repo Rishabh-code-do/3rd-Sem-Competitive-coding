@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+     int t;
+    scanf("%d",&t);
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    while(t>0)
+    {
+        int a,b;
+        scanf("%d %d",&a,&b);
+        int count=0;
+        while(b!=0)
+        {
+            int c=abs(a-b);
+            a=b;
+            b=c;
+            count++;
+        }
+        printf("%d\n",count);
+        t--;
+    }
+    return 0;
+}
