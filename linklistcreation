@@ -1,0 +1,50 @@
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+class node
+{
+    public:
+    int data;
+    node *next;
+};
+node *start=NULL;
+void insert(int val)
+{
+    node *ptr;
+    node *p=new node();
+    p->data=val;
+    p->next=NULL;
+    if(start==NULL)
+    start=p;
+    else
+    {
+        ptr=start;
+        while(ptr->next!=NULL)
+        {
+            ptr=ptr->next;
+        }
+        ptr->next=p;
+    }
+}
+void display()
+{
+    if(start==NULL)
+    cout<<"Linklist is empty";
+    else
+    {
+        node *ptr=start;
+        while(ptr->next!=NULL)
+        {
+            cout<<ptr->data<<" ";
+            ptr=ptr->next;
+        }
+        cout<<ptr->data;
+    }
+}
+int main() {
+    insert(1);
+    insert(2);
+    insert(3);
+    display();
+	return 0;
+}
