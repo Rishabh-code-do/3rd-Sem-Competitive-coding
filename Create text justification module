@@ -1,0 +1,68 @@
+#include <bits/stdc++.h>
+using namespace std;
+void fun(string s,int n)
+{
+    vector<int>index;
+   for(int i=0;i<s.length();i++)
+   {
+       if(s[i]==32)
+       index.push_back(i);
+   }
+    while(s.length()!=n)
+    {
+        int k=0;
+        for (int i=0;i<index.size();i++)
+        {
+        k++;
+        s=s.substr(0,index[i])+" "+s.substr(index[i]);
+        index[i+1]=index[i+1]+k;
+        if(s.length()==n)
+        break;
+        }
+    }
+    cout<<s<<"\n";
+}
+int main() {
+    string str="";
+    int count=1;
+    vector<string> arr;
+    int l;
+    cin>>l;
+    string sen;
+    cin>>sen;
+    string temp=sen;
+    getline(cin,sen);
+    sen=temp+sen;
+    int n=sen.length();
+    string sum="";
+    for(int i=0;i<n;i++)
+    {
+        if(sen[i]!=32)
+        {
+            sum=sum+sen[i];
+        }
+        else
+        {
+            arr.push_back(sum);
+            count++;
+            sum="";
+        }
+    }
+    arr.push_back(sum);
+    for(int i=0;i<arr.size();i++)
+    {
+        int s=str.length();
+        str=str+arr[i]+" ";
+        if(str.length()>l+1)
+        {
+        string str1=str.substr(0,s-1);
+        fun(str1,l);
+        str="";
+        i--;
+        }
+    }
+    int s=str.length();
+    string str1=str.substr(0,s-1);
+    fun(str1,l);
+    return 0;
+}
