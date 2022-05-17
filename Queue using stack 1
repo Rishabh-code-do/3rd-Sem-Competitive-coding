@@ -1,0 +1,49 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int stack1[100];
+int stack2[100];
+int top1=-1;
+int top2=-1;
+void enqueue(int n)
+{
+    stack1[++top1]=n; 
+}
+void dequeue()
+{
+    while(top1!=-1)
+    {
+        stack2[++top2]=stack1[top1];
+        top1--;
+    }
+    int y=stack2[top2];
+    top2--;
+    cout<<y<<endl;
+    while(top2!=-1)
+    {
+        stack1[++top1]=stack2[top2];
+        top2--;
+    }
+}
+int main() {
+      
+    string s;
+    while(cin>>s)
+    {
+        if(s=="enqueue")
+        {
+            int n;
+            cin>>n;
+            enqueue(n);
+        }
+        else
+        {
+          dequeue();  
+        }
+    }
+    return 0;
+}
